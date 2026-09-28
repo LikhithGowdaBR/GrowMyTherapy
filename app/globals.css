@@ -70,6 +70,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .desktop-nav a:hover, .footer-nav a:hover, .site-footer a:hover { color: var(--coral); }
 .header-link { display: inline-flex; align-items: center; gap: 12px; padding: 11px 0 11px 15px; border-bottom: 1px solid var(--pine); color: var(--pine); font-size: 12px; font-weight: 650; }
 .header-link span { color: var(--coral); font-size: 16px; }
+.mobile-menu-toggle { display: none; }
+.mobile-nav-panel { display: none; }
 
 .hero { position: relative; overflow: hidden; background: var(--pine); color: var(--white); }
 .hero::before { position: absolute; top: 0; left: 0; width: 46%; height: 100%; content: ""; opacity: .16; background-image: repeating-linear-gradient(135deg, transparent 0 28px, rgba(220,231,181,.24) 29px, transparent 30px 58px); pointer-events: none; }
@@ -262,8 +264,54 @@ h2 em { color: var(--coral); font-style: normal; }
   .site-header > div { min-height: 75px; }
   .wordmark-name { font-size: 18px; }
   .wordmark-credential { font-size: 8px; }
-  .desktop-nav { display: none; }
-  .header-link { gap: 7px; padding-left: 8px; font-size: 10px; }
+  .desktop-nav, .desktop-only { display: none; }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 38px;
+    height: 38px;
+    padding: 8px 7px;
+    border: 1px solid rgba(24, 61, 54, 0.18);
+    border-radius: 10px;
+    background: rgba(24, 61, 54, 0.03);
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .mobile-menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--pine);
+  }
+
+  .mobile-nav-panel {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 22px 18px;
+    background: rgba(248, 247, 241, 0.99);
+    border-top: 1px solid rgba(24, 61, 54, 0.12);
+  }
+
+  .mobile-nav-panel.open {
+    display: flex;
+  }
+
+  .mobile-nav-panel a {
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: var(--pine);
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(24, 61, 54, 0.04);
+  }
+
   .hero-inner { grid-template-columns: 1fr; gap: 27px; padding-top: 47px; padding-bottom: 35px; }
   .hero-copy { padding: 0; }
   .hero .eyebrow { margin-bottom: 19px; font-size: 8px; }

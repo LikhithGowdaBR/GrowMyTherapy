@@ -1,4 +1,14 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+
+const navItems = [
+  { href: "#approach", label: "Approach" },
+  { href: "#specialties", label: "Specialties" },
+  { href: "#about", label: "About" },
+  { href: "#office", label: "The office" },
+];
 
 const specialties = [
   {
@@ -45,6 +55,8 @@ const faqs = [
 ];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <div className="notice-bar">
@@ -53,18 +65,43 @@ export default function Home() {
 
       <header className="site-header">
         <div className="site-container mx-auto flex w-full max-w-[1240px] items-center justify-between px-6">
-          <a className="wordmark" href="#home" aria-label="Dr. Maya Reynolds, home">
-            <span className="wordmark-name">Maya Reynolds</span>
-            <span className="wordmark-credential">PsyD · Clinical Psychologist</span>
+          <a className="wordmark" href="#home" aria-label="Dr Maya Reynolds, home">
+            <span className="wordmark-name">Dr Maya Reynolds</span>
+            <span className="wordmark-credential">Clinical Psychologist</span>
           </a>
+
           <nav className="desktop-nav" aria-label="Main navigation">
-            <a href="#approach">Approach</a>
-            <a href="#specialties">Specialties</a>
-            <a href="#about">About</a>
-            <a href="#office">The office</a>
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
           </nav>
-          <a className="header-link" href="#faqs">Getting started <span aria-hidden="true">↗</span></a>
+
+          <a className="header-link desktop-only" href="#faqs">
+            Getting started <span aria-hidden="true">↗</span>
+          </a>
+
+          <button
+            type="button"
+            className="mobile-menu-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
+
+        <nav className={`mobile-nav-panel ${menuOpen ? "open" : ""}`} aria-label="Mobile navigation">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
       </header>
 
       <main>
